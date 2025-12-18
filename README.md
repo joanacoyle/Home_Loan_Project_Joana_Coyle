@@ -1,89 +1,95 @@
-# Home_Loan_Project_Joana_Coyle
-# Sales Performance Analysis — Joana Coyle
+# Home Loan Repayment Prediction — Joana Coyle
 
 ## Overview
-Sales performance analysis using **exploratory data analysis (EDA) and data visualization** to identify regional trends, uncover low-performing states, and support data-driven sales and marketing strategies.
+Credit risk analysis project using **exploratory data analysis (EDA) and machine learning** to predict whether a loan applicant will repay or default, supporting data-driven lending decisions.
 
 ---
 
 ## Dataset
-- **7,560 records** of Australian apparel sales  
-- **Time period:** Q4 2020 (October–December)  
-- **Key features:**  
-  - Date  
-  - Time of Day  
-  - State  
-  - Customer Group  
-  - Units Sold  
-  - Sales  
+- Home loan application records  
+- **Binary target:** Loan Repayment Status (Repaid / Default)  
+- **Key features include:**  
+  - Applicant income  
+  - Loan amount  
+  - Credit history  
+  - Employment status  
+  - Property area  
+  - Demographic and financial attributes  
 
-> Note: All data falls within a single quarter, so quarterly comparisons are not meaningful.
+> Note: The dataset contains class imbalance, which was addressed during preprocessing.
 
 ---
 
 ## Workflow
 
 ### Data Wrangling & Validation
-- Verified absence of missing values and duplicates  
+- Checked and handled missing values  
+- Removed duplicate records  
 - Preserved an untouched copy of the original dataset  
-- Converted date fields to datetime format  
-- Engineered time-based features:
-  - Week  
-  - Month  
-  - Month Name  
+- Encoded categorical variables  
+- Scaled numerical features for model stability  
 
 ### Exploratory Data Analysis (EDA)
-- Identified a right-skewed sales distribution with high-value outliers  
-- Confirmed a strong positive relationship between **Units Sold** and **Sales**  
-- Analyzed sales performance by:
-  - State  
-  - Customer Group  
-  - Time of Day  
-  - Week and Month  
+- Identified skewed distributions in income and loan amount  
+- Confirmed **credit history** as a dominant factor in repayment outcomes  
+- Analyzed repayment behavior by:
+  - Income level  
+  - Loan amount  
+  - Employment status  
+  - Property area  
+- Verified class imbalance in the target variable  
 
-### Regional Analysis
-- **Top-performing states:** VIC, NSW, SA  
-- **Lowest-performing states:** WA, NT, TAS, QLD  
-- Time of day and customer group showed **minimal influence** on low performance  
-- **November** identified as the weakest sales month across all states  
+### Feature Engineering
+- Applied feature scaling using **StandardScaler / MinMaxScaler**  
+- Reduced dimensionality using **PCA**  
+- Addressed class imbalance using **SMOTE** on training data only  
+
+---
+
+## Modeling & Evaluation
+- Trained supervised classification models:
+  - Logistic Regression  
+  - Neural Network (TensorFlow / Keras)  
+- Optimized decision thresholds for better recall–precision balance  
+- Evaluated models using:
+  - Accuracy  
+  - Precision & Recall  
+  - ROC–AUC  
+  - Confusion Matrix  
 
 ---
 
 ## Key Insights
-- Higher unit sales consistently result in higher revenue  
-- Sales patterns remain stable across time of day and customer groups  
-- Seasonality is the primary driver of sales variation  
-- November underperforms despite marking the beginning of the holiday season  
+- Credit history is the strongest predictor of loan repayment  
+- Income alone is not sufficient to assess credit risk  
+- Class imbalance significantly affects baseline model performance  
+- Threshold tuning improves default detection  
 
 ---
 
 ## Recommendation
-Implement a **targeted November marketing campaign** to encourage earlier holiday shopping and improve revenue during a consistently weak sales period.
+Use the model as a **decision-support tool** rather than an automated approval system, combining predictions with human review for borderline cases.
 
 ---
 
 ## Data Preparation (ML-Ready)
-- Converted dates to numeric timestamps  
-- Applied one-hot encoding to categorical variables  
-- Normalized numerical features using **MinMaxScaler**  
-- Final dataset prepared for downstream machine learning applications  
+- One-hot encoded categorical variables  
+- Scaled numerical features  
+- Applied SMOTE exclusively on training data to prevent data leakage  
+- Split data into training, validation, and test sets  
+- Final dataset prepared for future deployment and experimentation  
 
 ---
 
 ## Tools & Technologies
-- Python  
-- pandas  
-- numpy  
-- matplotlib  
-- seaborn  
-- scikit-learn  
+Python · pandas · numpy · matplotlib · seaborn · scikit-learn · TensorFlow · Keras
 
 ---
 
 ## Key Takeaway
-Sales performance differences are driven more by **seasonality and sales volume** than by customer segment or time of day, highlighting November as a critical opportunity for revenue growth.
+Loan repayment behavior is driven primarily by **credit history and financial stability**, highlighting the importance of careful preprocessing, balanced datasets, and robust evaluation in credit risk modeling.
 
 ---
 
 ## About
-**Exploratory data analysis and visualization project focused on sales performance, regional trends, and data-driven marketing insights.**
+**End-to-end machine learning project focused on credit risk analysis, classification modeling, and data-driven lending insights.**
