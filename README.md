@@ -1,95 +1,51 @@
-# Home Loan Repayment Prediction — Joana Coyle
+# 🏦 Home Loan Repayment Prediction — Joana Coyle
 
 ## Overview
-Credit risk analysis project using **exploratory data analysis (EDA) and machine learning** to predict whether a loan applicant will repay or default, supporting data-driven lending decisions.
+End-to-end **credit risk classification** project predicting whether a loan applicant will **repay or default**, using structured financial and demographic data.  
+Built to demonstrate **production-ready ML practices**, not just model accuracy.
 
 ---
 
 ## Dataset
 - Home loan application records  
-- **Binary target:** Loan Repayment Status (Repaid / Default)  
-- **Key features include:**  
-  - Applicant income  
-  - Loan amount  
-  - Credit history  
-  - Employment status  
-  - Property area  
-  - Demographic and financial attributes  
-
-> Note: The dataset contains class imbalance, which was addressed during preprocessing.
+- **Target:** Loan Repayment Status (Repaid / Default)  
+- Features include income, loan amount, credit history, employment status, and demographics  
+- Dataset is **highly imbalanced** (defaults underrepresented)
 
 ---
 
-## Workflow
-
-### Data Wrangling & Validation
-- Checked and handled missing values  
-- Removed duplicate records  
-- Preserved an untouched copy of the original dataset  
-- Encoded categorical variables  
-- Scaled numerical features for model stability  
-
-### Exploratory Data Analysis (EDA)
-- Identified skewed distributions in income and loan amount  
-- Confirmed **credit history** as a dominant factor in repayment outcomes  
-- Analyzed repayment behavior by:
-  - Income level  
-  - Loan amount  
-  - Employment status  
-  - Property area  
-- Verified class imbalance in the target variable  
-
-### Feature Engineering
-- Applied feature scaling using **StandardScaler / MinMaxScaler**  
-- Reduced dimensionality using **PCA**  
-- Addressed class imbalance using **SMOTE** on training data only  
+## Workflow (High Level)
+- Data cleaning & validation (missing values, duplicates)
+- Exploratory data analysis to identify risk drivers
+- Outlier treatment using **IQR filtering + winsorization**
+- Feature encoding and scaling
+- Dimensionality reduction with **PCA**
+- Class imbalance handled with **SMOTE (training data only)**
 
 ---
 
-## Modeling & Evaluation
-- Trained supervised classification models:
-  - Logistic Regression  
-  - Neural Network (TensorFlow / Keras)  
-- Optimized decision thresholds for better recall–precision balance  
-- Evaluated models using:
-  - Accuracy  
-  - Precision & Recall  
-  - ROC–AUC  
-  - Confusion Matrix  
+## Modeling
+- Logistic Regression (baseline)
+- Neural Network (TensorFlow / Keras)
+- Threshold tuning to improve default detection
+- Evaluation with:
+  - Precision / Recall
+  - ROC–AUC
+  - Confusion Matrix
 
 ---
 
 ## Key Insights
-- Credit history is the strongest predictor of loan repayment  
-- Income alone is not sufficient to assess credit risk  
-- Class imbalance significantly affects baseline model performance  
-- Threshold tuning improves default detection  
+- **Credit history** is the strongest predictor of repayment
+- Income alone is not sufficient for risk assessment
+- Class imbalance strongly impacts baseline performance
+- Threshold tuning improves identification of high-risk applicants
 
 ---
 
-## Recommendation
-Use the model as a **decision-support tool** rather than an automated approval system, combining predictions with human review for borderline cases.
+## Notes on Design Choices
+- **Outliers:** Extreme financial values were removed using IQR; remaining high-variance values were capped with winsorization to improve model stability without excessive data loss  
+- **PCA:** High number of components retained due to one-hot encoded feature space  
+- **Warnings:** Some pandas/seaborn `FutureWarning`s may appear in GitHub preview; they do not affect results
 
----
 
-## Data Preparation (ML-Ready)
-- One-hot encoded categorical variables  
-- Scaled numerical features  
-- Applied SMOTE exclusively on training data to prevent data leakage  
-- Split data into training, validation, and test sets  
-- Final dataset prepared for future deployment and experimentation  
-
----
-
-## Tools & Technologies
-Python · pandas · numpy · matplotlib · seaborn · scikit-learn · TensorFlow · Keras
-
----
-
-## Key Takeaway
-Loan repayment behavior is driven primarily by **credit history and financial stability**, highlighting the importance of careful preprocessing, balanced datasets, and robust evaluation in credit risk modeling.
-
----
-
-## About
-**End-to-end machine learning project focused on credit risk analysis, classification modeling, and data-driven lending insights.**
